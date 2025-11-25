@@ -319,6 +319,8 @@ func (p *parsing) parseNumber() bool {
 				if isNumberByte(nextByte) {
 					if start == -1 {
 						start = p.pos
+					} else {
+						break
 					}
 				} else {
 					break
