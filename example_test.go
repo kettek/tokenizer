@@ -122,11 +122,11 @@ func (parser *jsonParser) error(stream *Stream) error {
 func TestJsonParser(t *testing.T) {
 	parser := newJSONParser()
 
-	data, err := parser.Parse([]byte(`{"one": 1, "two": "three", "four": [5, "six", 7.8, {}]}`))
+	data, err := parser.Parse([]byte(`{"one": 1, "two": "three", "four": [5, "six", 7.8, -9, -99.9, {}]}`))
 	require.NoError(t, err)
 	require.Equal(t, map[string]interface{}{
 		"one":  int64(1),
 		"two":  "three",
-		"four": []interface{}{int64(5), "six", 7.8, map[string]interface{}{}},
+		"four": []interface{}{int64(5), "six", 7.8, int64(-9), -99.9, map[string]interface{}{}},
 	}, data)
 }
